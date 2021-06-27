@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    
+        body {
+            background-image: url('https://dt-cdn.net/wp-content/uploads/2018/01/cloud-container-infra-monitoring.png');
+            background-color: #cccccc;
+         } 
+    
+        .btn-btn-outline-primary {
+            background-color: #38a353;
+            border: 4mm ridge rgba(3, 110, 78, 0.6);
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        } 
+        .btn-btn-outline-secondary {
+            background-color: #008CBA;
+            border: 4mm ridge rgba(24, 60, 83, 0.6);
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;} 
+        .btn-btn-outline-success {
+            background-color: #f44336;
+            border: 4mm ridge rgba(46, 27, 28, 0.6);
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;} 
+        .btn-btn-outline-danger {
+            background-color: #e7e7e7; 
+            color: black;
+            border: 4mm ridge rgba(181, 187, 185, 0.733);
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;} 
+        .btn-btn-outline-warning {background-color: #555555;
+            border: solid black;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;}
+        #center {
+            position: absolute;
+            left: 2300px;
+            top: 500px;
+            bottom: 0px;
+        } 
+        .jumbotron {
+            background-color: #397fb8;
+            color: rgb(15, 13, 13);
+            border: solid;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            position:absolute;
+            left: 500px;
+            width: 300px;
+            width: 500px;
+            height: 300px;
+            overflow-x: auto;
+            overflow-y: auto;
+            text-align:justify;
+        }
+        .jumbotron2 {
+            background-color: #397fb8;
+            color: rgb(15, 13, 13);
+            border: solid;
+            border-radius: 50% 20% / 10% 40%;;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            position:absolute;
+            left: 50px;
+            width: 300px;
+        }
+        .jumbotron3 {
+            background-color: #397fb8;
+            color: rgb(15, 13, 13);
+            border: solid;
+            border-radius: 50% 20% / 10% 40%;;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            position:absolute;
+            left: 520px;
+            width: 300px;
+        }
+        .jumbotron4 {
+            background-color: #397fb8;
+            color: rgb(15, 13, 13);
+            border: solid;
+            border-radius: 50% 20% / 10% 40%;;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            position:absolute;
+            left: 1000px;
+            width: 300px;
+        }
+
+        .navbar-navbar-light-bg-light {
+          background-color: rgb(83, 161, 206);
+          margin-top: 0%;
+        }
+
+
+
+    </style> 
+</head>
+<body>
+<script>
+     i = 0;
+    function imgMotion() {
+        var r = document.getElementById("centre")
+        r.style.left = i;
+        i++;
+        setTimeout(imgMotion,100);
+
+    }
+    function lw(){
+        var i = document.getElementById("in1").value
+        console.log(i)
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","http://192.168.43.98/cgi-bin/f.py?var=" + i , true);
+        xhr.send();
+        xhr.onload = function() {
+        var output = xhr.responseText;
+        document.getElementById("d1").innerHTML = output;
+        }
+    }
+    function info() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","http://192.168.43.98/cgi-bin/f.py?var=docker%20info", true);
+        xhr.send();
+        xhr.onload = function() {
+        var output = xhr.responseText;
+        document.getElementById("d1").innerHTML = output;
+        }
+    }
+    function list() {
+       
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","http://192.168.43.98/cgi-bin/f.py?var=docker%20images", true);
+        xhr.send();
+        xhr.onload = function() {
+        var output = xhr.responseText;
+        document.getElementById("d1").innerHTML = output;
+        }
+    }
+    function running_container() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","http://192.168.43.98/cgi-bin/f.py?var=docker%20ps", true);
+        xhr.send();
+        xhr.onload = function() {
+        var output = xhr.responseText;
+        document.getElementById("d1").innerHTML = output;
+        }
+    }
+    function all_container() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","http://192.168.43.98/cgi-bin/f.py?var=docker%20ps%20-a", true);
+        xhr.send();
+        xhr.onload = function() {
+        var output = xhr.responseText;
+        document.getElementById("d1").innerHTML = output;
+        }
+    }
+    function add() {
+        var i = document.getElementById("in1").value
+        console.log(i)
+        var j = document.getElementById("in2").value
+        console.log(j)
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","http://192.168.43.98/cgi-bin/f.py?var=docker%20run%20-itd%20--name="+i+"%20"+j, true);
+        xhr.send();
+        xhr.onload = function() {
+        var output = xhr.responseText;
+        document.getElementById("d1").innerHTML = output;
+        }
+    }
+    function stop() {
+        var i = document.getElementById("in3").value
+        console.log(i)
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","http://192.168.43.98/cgi-bin/f.py?var=docker%20stop%20"+i, true);
+        xhr.send();
+        xhr.onload = function() {
+        var output = xhr.responseText;
+        document.getElementById("d1").innerHTML = output; 
+        }
+    }
+
+    function Delete() {
+        var i = document.getElementById("in4").value
+        console.log(i)
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET","http://192.168.43.98/cgi-bin/f.py?var=docker%20rm%20"+i, true);
+        xhr.send();
+        xhr.onload = function() {
+        var output = xhr.responseText;
+        document.getElementById("d1").innerHTML = output;
+        }
+    }
+    
+</script>
+<nav class="navbar-navbar-light-bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="./download.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+      Bootstrap
+    </a>
+  </nav>
+<img src="https://img.icons8.com/ios-filled/150/000000/docker.png" id="center" onclick="imgMotion()" />
+<br>
+
+<div class="jumbotron">
+    <h1 class="display-4"><i>OUTPUT</i></h1>
+    <p class="lead"></p>
+    <hr class="my-4">
+    <p>
+    <pre>
+        <div class="ot">
+            <div id="d1" >here we have output</div>
+        </div>
+       
+    </pre>
+    </p>
+</div>   
+     
+<button class="btn-btn-outline-primary" onclick="info()"><b>Docker information</b></button>
+<br>
+<button class="btn-btn-outline-secondary" onclick="list()"><b>List images</b></button>
+<br>
+<button class="btn-btn-outline-success" onclick="running_container()"><b>List Running Containers</b> </button>
+<br>
+<button class="btn-btn-outline-danger" onclick="all_container()"><b>List All Containers</b></button>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+<div class="jumbotron2">
+    <h1 class="display-4"><i>Create Container</i></h1>
+    Name of Container<input id="in1">
+    image name   <input id="in2">
+    <p class="lead"></p>
+    <hr class="my-4">
+    <button type="button" class="btn-btn-outline-warning" onclick="add()">Start</button>
+    <br>
+ </div> 
+ <div class="jumbotron3">
+    <h1 class="display-4"><i>Stop Container</i></h1>
+    Name of Container<input id="in3">
+    <p class="lead"></p>
+    <hr class="my-4">
+    <button type="button" class="btn-btn-outline-warning" onclick="stop()">Stop</button>
+    <br>
+ </div> 
+ <div class="jumbotron4">
+    <h1 class="display-4"><i>Delete Container</i></h1>
+    Name of Container<input id="in4">
+    <p class="lead"></p>
+    <hr class="my-4">
+    <button type="button" class="btn-btn-outline-warning" onclick="Delete()">Delete</button>
+    <br>
+ </div> 
+</div>
+ 
+    
+
+    
+</body>
+</html>
